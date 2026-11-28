@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7dbe7">
+<title>FORMA Rose</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+:root{
+  --bg:#fff8fb;
+  --panel:#ffffff;
+  --panel-soft:#fff0f5;
+  --line:#efd3df;
+  --line-strong:#e7bfd0;
+  --text:#33222b;
+  --muted:#886675;
+  --pink:#bf4e7e;
+  --pink-2:#de7ca3;
+  --pink-3:#f6d8e4;
+  --pink-4:#fff3f8;
+  --shadow:0 12px 34px rgba(169,83,119,.12);
+  --radius:20px;
+}
+html,body{margin:0;background:linear-gradient(180deg,#fff9fc 0%,#fff4f8 100%);color:var(--text);font-family:'Manrope',system-ui,sans-serif}
+body{min-height:100svh}
+main{max-width:860px;margin:0 auto;padding:20px 16px 108px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin:2px 0 18px}
+.brand{display:flex;flex-direction:column;gap:4px}
+.logo{font-family:'Cormorant Garamond',serif;font-size:48px;line-height:.9;font-weight:700;letter-spacing:-1px;margin:0;color:#25151e}
+.logo span{color:var(--pink)}
+.subtitle{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.smallcaps{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--pink);font-weight:800}
+.hero{background:linear-gradient(135deg,#f9e1ea 0%,#fff4f8 60%,#fff 100%);border:1px solid var(--line);border-radius:28px;padding:22px 18px;box-shadow:var(--shadow);margin:12px 0 20px;position:relative;overflow:hidden}
+.hero:before{content:'';position:absolute;right:-40px;top:-40px;width:180px;height:180px;background:radial-gradient(circle,#f5cfe0 0,#f5cfe000 70%)}
+.hero h2{margin:10px 0 8px;font-family:'Cormorant Garamond',serif;font-size:38px;line-height:.95;font-weight:700;letter-spacing:-.02em}
+.hero p{margin:0;color:#6f5462;font-size:14px;max-width:56ch}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.pill,button,select,input{font:inherit}
+button,select{border:1px solid var(--line-strong);background:#fff;color:#704657;padding:12px 14px;border-radius:14px;cursor:pointer;transition:.2s ease;box-shadow:0 1px 0 rgba(255,255,255,.6) inset}
+button:hover,select:hover{transform:translateY(-1px)}
+button.active,button.primary{background:linear-gradient(180deg,var(--pink) 0%,#a83f69 100%);border-color:#a83f69;color:#fff;box-shadow:0 8px 18px rgba(168,63,105,.22)}
+button.soft{background:var(--pink-4)}
+button.icon{padding:10px 12px;border-radius:12px}
+button[disabled]{opacity:.55;transform:none;cursor:default}
+.muted,small{color:var(--muted)}
+.tabbar{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 10px}
+.tabbar button{border-radius:999px;padding:10px 14px}
+.section-title{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:12px 0 6px}
+.section-title h2,.section-title h3{margin:0;font-family:'Cormorant Garamond',serif;letter-spacing:-.02em}
+.section-title h2{font-size:34px}
+.section-title h3{font-size:28px}
+.progress{height:10px;background:#f1dce6;border-radius:999px;overflow:hidden;margin:10px 0 8px}
+.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--pink),#e58db0);border-radius:999px}
+.exercise{background:rgba(255,255,255,.86);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:24px;padding:16px 14px 14px;margin:14px 0;box-shadow:var(--shadow)}
+.exercise-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:10px}
+.exercise-top h3{margin:6px 0 6px;font-size:24px;font-family:'Cormorant Garamond',serif;line-height:1.02}
+.exercise-top .meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;background:var(--pink-4);border:1px solid var(--line);padding:6px 10px;font-size:12px;color:#7a5666}
+.badge strong{color:var(--pink)}
+.original{font-size:12px;color:var(--muted);margin-top:3px}
+.photo{position:relative;border-radius:20px;overflow:hidden;background:linear-gradient(135deg,#f6dde8,#fff8fb);border:1px solid var(--line);margin:12px 0 14px}
+.photo img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;background:#f4e3ea}
+.photo .fallback{display:none;aspect-ratio:16/10;align-items:center;justify-content:center;flex-direction:column;padding:18px;text-align:center;color:#8f6d7c;background:linear-gradient(135deg,#f8e7ee,#fff)}
+.photo.failed img{display:none}
+.photo.failed .fallback{display:flex}
+.photo-caption{display:flex;justify-content:space-between;gap:12px;padding:10px 12px;border-top:1px solid var(--line);font-size:12px;color:#7d5e6d;background:#fff}
+.photo-caption a{color:var(--pink);text-decoration:none}
+.photo-caption a:hover{text-decoration:underline}
+.muscles{display:grid;grid-template-columns:1.2fr .8fr;gap:12px;margin:0 0 12px}
+.muscle-card{background:var(--panel-soft);border:1px solid var(--line);border-radius:18px;padding:12px}
+.muscle-card h4{margin:0 0 8px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#8b6676}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:8px 10px;border-radius:999px;font-size:12px;border:1px solid var(--line);background:#fff;color:#6f5160}
+.chip.hot{background:#ffe4ef;border-color:#f0bfd4;color:#a33e69;font-weight:700}
+.glute-meter{display:grid;gap:8px}
+.scale{display:grid;grid-template-columns:70px 1fr 34px;align-items:center;gap:10px;font-size:12px;color:#745666}
+.bar{height:10px;border-radius:999px;background:#f0dae4;overflow:hidden}
+.bar span{display:block;height:100%;background:linear-gradient(90deg,#f1a8c2,#bf4e7e);border-radius:999px}
+details{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 14px;margin:10px 0 12px}
+summary{cursor:pointer;font-weight:700;color:#6d4859}
+summary::marker{color:var(--pink)}
+p{line-height:1.48}
+.sets-head,.sets-row{display:grid;grid-template-columns:34px minmax(74px,1fr) minmax(84px,1fr) 44px;gap:8px;align-items:center}
+.sets-head{padding:0 2px 8px;font-size:12px;color:#8c6a79}
+.sets-row{padding:7px 0}
+input[type=number]{min-width:0;width:100%;padding:11px 12px;border:1px solid var(--line-strong);border-radius:12px;background:#fff;color:var(--text)}
+input[type=checkbox]{width:22px;height:22px;accent-color:var(--pink)}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0 18px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:var(--shadow)}
+.stat strong{display:block;font-size:30px;font-family:'Cormorant Garamond',serif;line-height:1;color:#24161e;margin-top:6px}
+.history{background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px 14px;margin:10px 0;box-shadow:var(--shadow)}
+.history b{color:#8b3e62}
+nav{position:fixed;left:0;right:0;bottom:0;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;justify-content:center;gap:10px;z-index:40}
+nav button{border:0;padding:12px 16px;border-radius:999px;background:#fff;box-shadow:var(--shadow)}
+.sheet-wrap{position:fixed;inset:0;background:rgba(44,24,33,.44);display:flex;justify-content:center;align-items:flex-end;z-index:60}
+.sheet{background:#fff9fc;width:min(100%,760px);max-height:90svh;overflow:auto;border-radius:26px 26px 0 0;padding:18px 16px calc(20px + env(safe-area-inset-bottom));box-shadow:0 -24px 48px rgba(73,30,47,.25)}
+.sheet-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:8px}
+.sheet-head h2{margin:0;font-family:'Cormorant Garamond',serif;font-size:34px}
+.swap-option{display:grid;grid-template-columns:128px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.swap-option img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:16px;border:1px solid var(--line);background:#f3e4ea}
+.swap-option .ph{width:100%;aspect-ratio:1/1;border-radius:16px;border:1px dashed var(--line-strong);display:flex;align-items:center;justify-content:center;background:#fff2f7;color:#8b6978;font-size:12px;padding:8px;text-align:center}
+.swap-option strong{font-size:18px;font-family:'Cormorant Garamond',serif;display:block;margin:0 0 2px}
+.swap-option p{margin:4px 0 8px;font-size:13px;color:#7a5c6a}
+.settings-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:18px;box-shadow:var(--shadow);margin:14px 0}
+.font-sample{background:linear-gradient(135deg,#fff0f5,#fff);border:1px solid var(--line);border-radius:22px;padding:16px;margin-top:14px}
+.font-sample .display{font-family:'Cormorant Garamond',serif;font-size:38px;line-height:.95;margin:0 0 8px;color:#24141d}
+.note{background:#fff5f9;border:1px solid var(--line);padding:12px 14px;border-radius:16px;color:#755867;font-size:13px}
+@media (max-width:720px){
+  .muscles{grid-template-columns:1fr}
+  .swap-option{grid-template-columns:110px 1fr}
+}
+@media (max-width:440px){
+  main{padding-left:12px;padding-right:12px}
+  .hero h2{font-size:32px}
+  .section-title h2{font-size:30px}
+  .exercise-top{flex-direction:column}
+  .exercise-top .swap-btn{align-self:stretch}
+  .sets-head,.sets-row{grid-template-columns:26px minmax(64px,1fr) minmax(70px,1fr) 40px;gap:6px}
+  .logo{font-size:42px}
+}
+ .equipline{display:grid;gap:5px;border-left:3px solid #d983a6;padding:8px 12px;margin:12px 0;background:#fff4f8;color:#634253}.equipline a{color:#a83f69;font-size:13px}.equipline label{display:flex;align-items:center;gap:8px;font-size:14px}.photo-missing{color:#886675;font-size:12px;margin:10px 0}.muscle-label{font-size:12px;color:#886675;margin:10px 0 6px}.muscle-card svg{width:100%;max-height:190px;display:block}.muscle-card small{font-size:11px;display:block;text-align:center}.swap-option .equipline{padding:5px 7px;margin:5px 0}.swap-option .equipline strong{font:600 12px Manrope,sans-serif} </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="brand">
+      <h1 class="logo">forma<span>.</span></h1>
+      <div class="subtitle">Rose • DDX Fitness • Full Body</div>
+    </div>
+    <div class="smallcaps">for her</div>
+  </header>
+  <div id="rose-panel" class="settings-card" style="padding:12px;margin:10px 0"></div><p id="rose-status" aria-live="polite" class="muted" style="font-size:12px"></p><div id="app"></div>
+</main>
+<nav>
+  <button onclick="tab='plan';render()">Тренировки</button>
+  <button onclick="tab='log';render()">Прогресс</button>
+  <button onclick="tab='settings';render()">Настройки</button>
+</nav>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/dist/umd/supabase.js"></script>
+<script>
+const E={thrust:['Ягодичный мост со штангой','Ягодицы','3 × 8–12','Подбородок слегка опущен, ребра не выпячивать. Вверху сжать ягодицы, не прогибая поясницу.','Мост в тренажёре; мост с гантелью; мост на полу'],squat:['Присед с гантелью','Ягодицы, квадрицепс','3 × 8–12','Колени направлять по линии стоп, опускаться до комфортной глубины.','Жим ногами; присед в Смите; присед на тумбу'],rdl:['Румынская тяга','Ягодицы, задняя поверхность бедра','3 × 8–12','Отводить таз назад, держать вес близко к ногам, спину нейтральной.','Тяга с гантелями; тяга на блоке; гиперэкстензия'],split:['Болгарские выпады','Ягодицы, ноги','2 × 8–12 на ногу','Слегка наклонить корпус, опускаться контролируемо, опора на всю стопу.','Обратные выпады; зашагивания; сплит-присед'],abduct:['Отведение бёдер','Средняя ягодичная','2 × 12–20','Не раскачивать корпус, плавно возвращать ноги.','Резинка; отведение на блоке; боковое отведение лёжа'],row:['Горизонтальная тяга','Спина','2 × 10–12','Тянуть локти назад без рывка и подъёма плеч.','Тяга гантели; тяга в тренажёре'],press:['Жим гантелей лёжа','Грудь, трицепс','2 × 8–12','Лопатки устойчивы, запястья ровные.','Жим в тренажёре; отжимания от опоры'],lat:['Тяга верхнего блока','Спина','2 × 10–12','Тянуть к верхней части груди, не раскачиваться.','Подтягивания с поддержкой; тяга резинки'],shoulder:['Жим гантелей сидя','Плечи','2 × 8–12','Не прогибать поясницу, двигаться без боли.','Жим в тренажёре; жим одной рукой'],core:['Dead bug','Мышцы корпуса','2 × 8–12 на сторону','Удерживать поясницу стабильно, медленно опускать противоположные руку и ногу.','Планка; Pallof press'],curl:['Сгибание ног','Задняя поверхность бедра','2 × 10–15','Не отрывать таз, контролировать обратное движение.','Сгибание ног на фитболе; сгибание в другом тренажёре']};
+const plans={1:[['thrust','squat','row','press','core']],2:[['thrust','squat','row','press','core'],['rdl','split','lat','shoulder','abduct']],3:[['thrust','squat','row','press','core'],['rdl','abduct','lat','shoulder','core'],['split','thrust','row','press','curl']],4:[['thrust','row','press','core'],['squat','lat','shoulder','abduct'],['rdl','row','press','core'],['split','lat','shoulder','curl']]};
+const alternatives={
+ thrust:[['thrustMachine','Ягодичный мост в тренажёре','thrust','Настрой опору и ремень на тазу. Поднимай таз до нейтрального положения корпуса, без прогиба поясницы.'],['thrustDB','Ягодичный мост с гантелью','thrust','Положи гантель на таз через мягкую прокладку. Удерживай её руками.'],['bridge','Ягодичный мост на полу','bridge','Стопы на полу, колени согнуты. Поднимай таз до линии плечи–таз–колени.']],
+ squat:[['legpress','Жим ногами','legpress','Прижимай таз к спинке, не округляй поясницу. Не выпрямляй колени резко.'],['smith','Присед в Смите','squat','Установи ограничители, держи стопы устойчиво, колени по линии носков.'],['boxsquat','Присед на тумбу','boxsquat','Коснись тумбы тазом без падения на неё, затем встань.']],
+ rdl:[['rdlDB','Румынская тяга с гантелями','rdl','Веди гантели близко к ногам, отводи таз назад, колени слегка согнуты.'],['pullthrough','Тяга каната между ног','pullthrough','Встань спиной к нижнему блоку, отводи таз назад и выпрямляйся за счёт ягодиц.'],['hyper','Гиперэкстензия с акцентом на ягодицы','hyper','Опора ниже тазобедренного сгиба. Разгибайся до прямой линии корпуса и ног.']],
+ split:[['reverse','Обратные выпады','lunge','Шагни назад, опусти заднее колено, вернись через переднюю стопу.'],['stepup','Зашагивания на тумбу','stepup','Поставь всю стопу на устойчивую тумбу, поднимайся усилием опорной ноги.'],['splitsquat','Сплит-присед','lunge','Обе стопы на полу, стойка в разножке. Опускайся вертикально, сохраняя опору передней стопы.']],
+ abduct:[['band','Отведение бёдер с резинкой','abduct','Сиди устойчиво, разводи колени против сопротивления резинки.'],['cableabd','Отведение ноги на блоке','cableabd','Держись за опору, отводи прямую ногу в сторону без наклона таза.','2 × 12–20 на ногу'],['sideabd','Отведение ноги лёжа на боку','sideabd','Ляг на бок, поднимай верхнюю ногу без разворота таза.','2 × 12–20 на ногу']],
+ row:[['dbrow','Тяга гантели с опорой','dbrow','Обопрись рукой на скамью, тяни гантель к тазу без разворота корпуса.','2 × 10–12 на сторону'],['machrow','Тяга в тренажёре с упором грудью','row','Прижми грудь к опоре, тяни локти назад без рывка.']],
+ press:[['machpress','Жим в грудном тренажёре','machpress','Настрой высоту сиденья, рукояти на уровне груди. Выжимай плавно.'],['pushup','Отжимания от опоры','pushup','Упрись в устойчивую опору, держи корпус прямым, сгибай локти контролируемо.']],
+ lat:[['assist','Подтягивания с поддержкой','lat','Выбери достаточную помощь, веди локти вниз, не раскачивайся.'],['bandlat','Тяга резинки сверху','lat','Закрепи резинку над головой на надёжной опоре, тяни локти вниз.']],
+ shoulder:[['machshoulder','Жим плеч в тренажёре','shoulder','Настрой сиденье так, чтобы рукояти были около плеч. Не прогибайся.'],['onepress','Жим гантели одной рукой','shoulder','Сохраняй корпус неподвижным, выжимай гантель над плечом.','2 × 8–12 на сторону']],
+ core:[['plank','Планка','plank','Локти под плечами, корпус в прямой линии, дыши спокойно.','2 × 20–40 сек'],['pallof','Жим Паллофа','pallof','Встань боком к блоку, выпрямляй руки перед собой без поворота корпуса.']],
+ curl:[['ballcurl','Сгибание ног на фитболе','ballcurl','Пятки на мяче, подними таз и подкатывай мяч к себе без рывка.'],['seatcurl','Сгибание ног сидя','seatcurl','Совмести ось тренажёра с коленом, сгибай ноги плавно.']]
+};
+for(const [base,opts] of Object.entries(alternatives)) for(const [id,name,pose,tech,sets] of opts) E[id]=[name,E[base][1],sets||E[base][2],tech,'',pose];
+
+const MUSCLES = {
+  thrust:{primary:['Большая ягодичная','Бицепс бедра'],secondary:['Кор','Средняя ягодичная'],glute:5},
+  bridge:{primary:['Большая ягодичная','Бицепс бедра'],secondary:['Кор'],glute:5},
+  squat:{primary:['Ягодицы','Квадрицепсы'],secondary:['Бицепс бедра','Кор'],glute:4},
+  legpress:{primary:['Ягодицы','Квадрицепсы'],secondary:['Бицепс бедра'],glute:3},
+  rdl:{primary:['Ягодицы','Бицепс бедра'],secondary:['Разгибатели спины','Кор'],glute:5},
+  pullthrough:{primary:['Ягодицы','Бицепс бедра'],secondary:['Кор'],glute:5},
+  hyper:{primary:['Ягодицы','Бицепс бедра'],secondary:['Разгибатели спины'],glute:4},
+  split:{primary:['Ягодицы','Квадрицепсы'],secondary:['Бицепс бедра','Кор'],glute:5},
+  lunge:{primary:['Ягодицы','Квадрицепсы'],secondary:['Бицепс бедра','Кор'],glute:4},
+  stepup:{primary:['Ягодицы','Квадрицепсы'],secondary:['Икры','Кор'],glute:4},
+  abduct:{primary:['Средняя ягодичная','Малая ягодичная'],secondary:['Стабилизаторы таза'],glute:4},
+  cableabd:{primary:['Средняя ягодичная','Малая ягодичная'],secondary:['Стабилизаторы таза'],glute:4},
+  sideabd:{primary:['Средняя ягодичная','Малая ягодичная'],secondary:['Косые мышцы корпуса'],glute:4},
+  row:{primary:['Широчайшие','Ромбовидные'],secondary:['Задняя дельта','Бицепс'],glute:1},
+  dbrow:{primary:['Широчайшие','Ромбовидные'],secondary:['Задняя дельта','Бицепс'],glute:1},
+  press:{primary:['Грудные','Трицепс'],secondary:['Передняя дельта'],glute:1},
+  machpress:{primary:['Грудные','Трицепс'],secondary:['Передняя дельта'],glute:1},
+  pushup:{primary:['Грудные','Трицепс'],secondary:['Передняя дельта','Кор'],glute:1},
+  lat:{primary:['Широчайшие','Большая круглая'],secondary:['Бицепс','Нижние трапеции'],glute:1},
+  shoulder:{primary:['Передняя и средняя дельта','Трицепс'],secondary:['Верх трапеций','Кор'],glute:1},
+  core:{primary:['Прямая мышца живота','Поперечная мышца живота'],secondary:['Сгибатели бедра'],glute:1},
+  plank:{primary:['Поперечная мышца живота','Прямая мышца живота'],secondary:['Ягодицы','Плечевой пояс'],glute:2},
+  pallof:{primary:['Косые мышцы живота','Поперечная мышца живота'],secondary:['Ягодицы'],glute:2},
+  curl:{primary:['Бицепс бедра'],secondary:['Икроножные'],glute:1},
+  seatcurl:{primary:['Бицепс бедра'],secondary:['Икроножные'],glute:1},
+  ballcurl:{primary:['Бицепс бедра'],secondary:['Ягодицы','Кор'],glute:2}
+};
+
+const PHOTO_FILES = {lat:'Girl doing lat pulldown exercise.jpg',shoulder:'Girl doing dumbbell shoulder press 02.jpg',plank:'Woman performing plank exercise at home gym.jpg'};
+const PHOTO_NOTES = {
+  thrust:'Фотореференс движения ягодичного моста / варианта hip thrust',
+  bridge:'Фотореференс ягодичного моста',
+  squat:'Фотореференс приседания',
+  legpress:'Фотореференс нижней части движения ног',
+  rdl:'Фотореференс румынской тяги',
+  pullthrough:'Фотореференс шарнира в тазобедренном суставе',
+  hyper:'Фотореференс разгибания корпуса с акцентом на ягодицы',
+  split:'Фотореференс выпадов',
+  lunge:'Фотореференс выпадов',
+  stepup:'Фотореференс одноногого движения на ноги/ягодицы',
+  abduct:'Фотореференс упражнения на отведение',
+  cableabd:'Фотореференс упражнения на отведение',
+  sideabd:'Фотореференс упражнения на отведение',
+  row:'Фотореференс горизонтальной тяги',
+  dbrow:'Фотореференс тяги гантели',
+  press:'Фотореференс жима лёжа/разведения',
+  machpress:'Фотореференс жима',
+  pushup:'Фотореференс отжиманий',
+  lat:'Фотореференс тяги верхнего блока',
+  shoulder:'Жим гантелей (фото на открытом воздухе)',
+  core:'Фотореференс упражнения на корпус',
+  plank:'Фотореференс планки',
+  pallof:'Фотореференс упражнения на стабильность корпуса',
+  curl:'Фотореференс сгибания ног',
+  seatcurl:'Фотореференс сгибания ног сидя',
+  ballcurl:'Фотореференс сгибания ног на фитболе'
+};
+
+function commonsFile(name){ return 'https://commons.wikimedia.org/wiki/Special:FilePath/' + encodeURIComponent(name); }
+function familyFor(id){
+  if(PHOTO_FILES[id]) return id;
+  for(const [base,opts] of Object.entries(alternatives)) if(base===id || opts.some(o=>o[0]===id)) return E[id]?.[5] || base;
+  return id;
+}
+function photoUrl(id){return PHOTO_FILES[id]?commonsFile(PHOTO_FILES[id]):'';}
+function photoNote(id){ const fam=familyFor(id); return PHOTO_NOTES[fam] || 'Фотореференс упражнения'; }
+function musclesFor(id){ return MUSCLES[id] || MUSCLES[({boxsquat:'squat',bandlat:'lat'})[familyFor(id)]||familyFor(id)] || {primary:[E[id]?.[1]||'Рабочая группа'],secondary:['Стабилизаторы'],glute:1}; }
+
+
+const TGROOT='https://www.technogym.com/en-INT/product/';
+const TG={
+ thrustMachine:['Hip Thrust','selection-900-hip-thrust_MN2P.html'],legpress:['Leg Press','selection-900-leg-press_MNAP.html'],
+ abduct:['Abductor','selection-900-abductor_MNPP.html'],row:['Low Row','selection-900-low-row_MNHP.html'],
+ machpress:['Chest Press','selection-900-chest-press_MNFP.html'],lat:['Lat Machine','selection-900-lat-machine_MNLP.html'],
+ machshoulder:['Shoulder Press','selection-900-shoulder-press_MNEP.html'],curl:['Prone Leg Curl','selection-900-prone-leg-curl_MNUP.html'],
+ seatcurl:['Leg Curl','selection-900-leg-curl_MNIP.html'],glutepress:['Glute Press','selection-900-glute-press_MN4P.html']};
+const EQUIP={thrust:'Штанга + скамья',thrustDB:'Гантель + скамья',bridge:'Коврик',squat:'Гантель',smith:'Smith Machine / машина Смита',boxsquat:'Тумба + гантель',rdl:'Штанга',rdlDB:'Гантели',pullthrough:'Кроссовер / нижний блок + канат',hyper:'Скамья для гиперэкстензии',split:'Скамья + гантели',reverse:'Гантели или собственный вес',stepup:'Устойчивая тумба',splitsquat:'Гантели',band:'Резинка',cableabd:'Кроссовер + манжета',sideabd:'Коврик',dbrow:'Гантель + скамья',machrow:'Тренажёр тяги с упором грудью',press:'Гантели + горизонтальная скамья',pushup:'Устойчивая скамья',assist:'Гравитрон',bandlat:'Резинка + надёжная опора',shoulder:'Гантели + скамья',onepress:'Гантель',core:'Коврик',plank:'Коврик',pallof:'Кроссовер',ballcurl:'Фитбол'};
+const preferred={thrust:'thrustMachine',squat:'legpress',press:'machpress',shoulder:'machshoulder',curl:'seatcurl'};
+E.glutepress=['Разгибание бедра в тренажёре','Ягодицы','2 × 10–15 на ногу','Настрой опору по инструкции тренажёра. Удерживай таз неподвижно, отводи бедро назад без переразгибания поясницы.','', 'glutepress'];
+alternatives.thrust.push(['glutepress',E.glutepress[0]]);
+function equipmentBlock(id){const t=TG[id];return `<div class="equipline"><span class="smallcaps">Оборудование</span><strong>${t?'Technogym · '+t[0]:EQUIP[id]||'Уточни в зале'}</strong>${t?`<a href="${TGROOT+t[1]}" target="_blank" rel="noopener">Фото и модель тренажёра ↗</a>`:''}</div>`;}
+
+let s;
+try{ s = JSON.parse(localStorage.getItem('formaRoseV2')) || JSON.parse(localStorage.getItem('formaRoseV1')) || {}; }
+catch(e){ s = {}; }
+s.n=s.n||3; s.week=s.week||1; s.day=s.day||0; s.data=s.data||{}; s.done=s.done||{}; s.swaps=s.swaps||{};
+let tab='plan';
+const save=()=>localStorage.setItem(roseKey(),JSON.stringify(s));
+const key=()=>`${s.week}-${s.n}-${s.day}`;
+function changeN(n){s.n=+n;s.day=0;save();render()}
+function changeDay(d){s.day=d;save();render()}
+function setVal(k,f,v){s.data[k]??={};s.data[k][f]=v;save();if(f==='ok')render()}
+function week(d){s.week=Math.max(1,s.week+d);s.day=0;save();render()}
+function chosen(base){const explicit=s.swaps[key()+'-'+base];if(explicit)return explicit;const old=Object.keys(s.data).some(k=>k.startsWith(key()+'-'+base+'-'));return s.machine!==false&&!old&&!s.done[key()]?(preferred[base]||base):base}
+function replaceExercise(base,id){s.swaps[key()+'-'+base]=id;delete s.done[key()];save();document.getElementById('swapModal')?.remove();render()}
+function safeText(str){return String(str).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]))}
+function parseSetCount(txt){ const m = String(txt).match(/^(\d+)/); return m ? +m[1] : 2; }
+
+function exercisePhoto(id,compact=false){
+  const url = photoUrl(id); const tg=TG[id]; if(!url){if(compact)return `<div class="ph">${tg?tg[0]:'Свободные веса / инвентарь'}</div>`;return tg?'':`<div class="photo-missing">Точное фото упражнения пока не добавлено.</div>`;}
+  if(compact){
+    return url ? `<img src="${url}" alt="${safeText(E[id][0])}" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',textContent:'Фото недоступно'}))">` : `<div class="ph">Фото недоступно</div>`;
+  }
+  return `<div class="photo"><img src="${url}" alt="${safeText(E[id][0])}" loading="lazy" onerror="this.parentElement.classList.add('failed')"><div class="fallback"><div style="font-family:'Cormorant Garamond',serif;font-size:30px;margin-bottom:8px">Фото упражнения</div><div>${safeText(E[id][0])}</div><div style="margin-top:8px;font-size:12px">Проверь подключение к интернету или замени фото на локальное.</div></div><div class="photo-caption"><span>${photoNote(id)}</span><span><a target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:${encodeURIComponent(PHOTO_FILES[id])}">Источник и лицензия</a> · ${id==='plank'?'Shixart1985, CC BY 2.0':'Tyler Read, CC BY 2.0 · <a href="https://www.ptpioneer.com/">PTPioneer</a>'}</span></div></div>`;
+}
+
+function musclesBlock(id){
+ const m=musclesFor(id); const names=[...m.primary,...m.secondary];
+ const zones={glute:/ягодиц|ягодич/i,quad:/квадриц/i,ham:/бицепс бедра|задняя поверхность/i,back:/широчайш|ромбовид|трапец|разгибатели спины|круглая/i,abs:/кор|живот|корпус/i,chest:/грудн/i,shoulder:/дельт|плечев/i,arm:/трицепс|бицепс(?! бедра)/i,calf:/икр/i};
+ const color=z=>m.primary.some(x=>zones[z].test(x))?'#bf4e7e':m.secondary.some(x=>zones[z].test(x))?'#f0b2ca':'#eee2e7';
+ const pair=(z,shape)=>`<g fill="${color(z)}" stroke="#fff8fb" stroke-width="1.2">${shape}</g>`;
+ const body=(rear)=>`<g><circle cx="50" cy="16" r="11" fill="#eee2e7"/><path d="M42 29H58L71 39L78 80L70 84L62 52L64 86L62 113L60 150L57 181H49L48 145L43 113L40 145L39 181H31L29 150L29 113L35 86L37 52L25 84L17 80L27 39Z" fill="#eee2e7" stroke="#cbb6c1" stroke-width="1"/>${pair('shoulder','<ellipse cx="32" cy="43" rx="8" ry="10"/><ellipse cx="66" cy="43" rx="8" ry="10"/>')}${pair('arm','<path d="M26 48l-7 27 7 3 9-28zM69 48l7 27-7 3-9-28z"/>')}${rear?pair('back','<path d="M38 33Q50 39 62 33L61 62 53 80H46L38 62Z"/>')+pair('glute','<ellipse cx="41" cy="90" rx="11" ry="13"/><ellipse cx="59" cy="90" rx="11" ry="13"/>')+pair('ham','<path d="M30 105l17 0-5 37-10 0zM51 105h13l-2 37H51z"/>'):pair('chest','<path d="M36 39q14-6 28 0v15H36z"/>')+pair('abs','<path d="M39 55h22l-4 27H43z"/>')+pair('quad','<path d="M31 99h16l-6 40H31zM51 99h13l-2 40H51z"/>')}${pair('calf','<ellipse cx="36" cy="158" rx="6" ry="15"/><ellipse cx="56" cy="158" rx="6" ry="15"/>')}</g>`;
+ return `<div class="muscles"><div class="muscle-card"><h4>Работающие мышцы</h4><div class="muscle-label">Основные</div><div class="chips">${m.primary.map(x=>`<span class="chip hot">${x}</span>`).join('')}</div><div class="muscle-label">Дополнительные</div><div class="chips">${m.secondary.map(x=>`<span class="chip">${x}</span>`).join('')}</div></div><div class="muscle-card"><svg viewBox="0 0 210 200" role="img" aria-label="Приблизительные зоны нагрузки"><g transform="translate(2 0)">${body(false)}</g><g transform="translate(105 0)">${body(true)}</g><g font-size="10" fill="#886675" text-anchor="middle"><text x="50" y="195">Спереди</text><text x="155" y="195">Сзади</text></g></svg><small>Тёмно-розовый: основные · светло-розовый: дополнительные</small></div></div>`;
+}
+MUSCLES.glutepress={primary:['Большая ягодичная'],secondary:['Задняя поверхность бедра','Кор'],glute:5};
+MUSCLES.thrust.primary=['Большая ягодичная'];MUSCLES.thrust.secondary=['Задняя поверхность бедра','Кор'];
+MUSCLES.bridge.primary=['Большая ягодичная'];MUSCLES.bridge.secondary=['Задняя поверхность бедра','Кор'];
+MUSCLES.curl.primary=['Задняя поверхность бедра'];MUSCLES.seatcurl.primary=['Задняя поверхность бедра'];
+
+function openSwap(base){
+  document.getElementById('swapModal')?.remove();
+  const curr = chosen(base), opts = [[base,E[base][0]], ...alternatives[base]];
+  const div = document.createElement('div');
+  div.id = 'swapModal';
+  div.className = 'sheet-wrap';
+  div.onclick = e => { if(e.target===div) div.remove(); };
+  div.innerHTML = `<section class="sheet" role="dialog" aria-modal="true" aria-label="Замена упражнения"><div class="sheet-head"><div><div class="smallcaps">exercise swap</div><h2>Замена упражнения</h2><div class="muted">${E[base][1]} · только для этого занятия</div></div><button class="icon" onclick="document.getElementById('swapModal').remove()">✕</button></div>${opts.map(opt=>{ const id=opt[0], name=opt[1]; const mus=musclesFor(id); return `<div class="swap-option">${exercisePhoto(id,true)}<div><strong>${name}</strong>${equipmentBlock(id)}<p>${E[id][2]} · ${mus.primary.slice(0,2).join(' + ')}</p><div class="chips" style="margin-bottom:10px">${mus.primary.slice(0,3).map(x=>`<span class="chip ${/ягод/i.test(x)?'hot':''}">${x}</span>`).join('')}</div><button class="${id===curr?'active':''}" ${id===curr?'disabled':''} onclick="replaceExercise('${base}','${id}')">${id===curr?'Выбрано':id===base?'Вернуть исходное':'Выбрать'}</button></div></div>`;}).join('')}</section>`;
+  document.body.appendChild(div);
+}
+
+function renderPlan(a){
+  const p = plans[s.n][s.day], active = p.map(chosen);
+  const total = active.reduce((acc,e)=>acc+parseSetCount(E[e][2]),0);
+  const done = active.reduce((sum,e)=>sum + Array.from({length:parseSetCount(E[e][2])},(_,i)=>s.data[key()+'-'+e+'-'+i]?.ok?1:0).reduce((x,y)=>x+y,0),0);
+  a.innerHTML = `<section class="hero"><div class="smallcaps">DDX Fitness • Glute focus</div><h2>Сила и форма</h2><p>Full Body с акцентом на ягодицы. Тренажёры Technogym и свободные веса. Если оборудование занято, выбери замену.</p><div class="row" style="margin-top:14px"><span class="muted">Тренировок в неделю</span><select onchange="changeN(this.value)">${[1,2,3,4].map(n=>`<option ${n===s.n?'selected':''}>${n}</option>`).join('')}</select></div></section><div class="row" style="justify-content:space-between"><div class="row"><button class="icon" onclick="week(-1)">‹</button><b>Неделя ${s.week}</b><button class="icon" onclick="week(1)">›</button></div><div class="row">${plans[s.n].map((_,i)=>`<button class="${i===s.day?'active':''}" onclick="changeDay(${i})">${String.fromCharCode(65+i)}</button>`).join('')}</div></div><div class="section-title"><div><h2>Тренировка ${String.fromCharCode(65+s.day)}</h2><small>${done} из ${total} подходов отмечено · разминка 5–8 минут</small></div></div><div class="progress"><i style="width:${Math.round(total?100*done/total:0)}%"></i></div>${p.map(base=>{ const e=chosen(base), x=E[e], count=parseSetCount(x[2]); return `<section class="exercise"><div class="exercise-top"><div><div class="smallcaps">${x[1]}</div><h3>${x[0]}</h3><div class="meta"><span class="badge"><strong>${x[2]}</strong></span><span class="badge">Full body</span>${musclesFor(e).glute>=4?'<span class="badge"><strong>Glute priority</strong></span>':''}</div>${e!==base?`<div class="original">Замена исходного упражнения: ${E[base][0]}</div>`:''}</div><button class="swap-btn" onclick="openSwap('${base}')">⇄ Заменить</button></div>${equipmentBlock(e)}${exercisePhoto(e)}${musclesBlock(e)}<details><summary>Техника выполнения</summary><p>${x[3]}</p><p class="muted">Отдых 90–150 секунд для базовых упражнений и 60–90 секунд для изолирующих.</p></details><div class="sets-head"><span>№</span><span>Вес, кг</span><span>${e==='plank'?'Секунды':'Повторы'}</span><span>✓</span></div>${Array.from({length:count},(_,i)=>{ const k = key()+'-'+e+'-'+i, v=s.data[k]||{}, prev=s.data[`${s.week-1}-${s.n}-${s.day}-${e}-${i}`]||{}; return `<div class="sets-row"><span>${i+1}</span><input type="number" min="0" step="0.5" placeholder="${prev.kg??'кг'}" value="${v.kg??''}" onchange="setVal('${k}','kg',this.value)"><input type="number" min="0" placeholder="${prev.rep??(e==='plank'?'сек':'повт') }" value="${v.rep??''}" onchange="setVal('${k}','rep',this.value)"><input type="checkbox" ${v.ok?'checked':''} onchange="setVal('${k}','ok',this.checked)"></div>`; }).join('')}</section>`; }).join('')}<div class="note">Когда все подходы стабильно доходят до верхней границы повторов с хорошей техникой, повышай вес небольшим шагом. Если упражнение вызывает боль, остановись и замени его.</div><button class="primary" style="width:100%;margin-top:14px" onclick="if(${done}<${total}&&!confirm('Не все подходы отмечены. Завершить тренировку?'))return;s.done[key()]=true;save();render()">${s.done[key()]?'✓ Тренировка завершена':'Завершить тренировку'}</button>`;
+}
+
+function renderLog(a){
+  const records = Object.entries(s.data).filter(([k,v])=>v.ok);
+  a.innerHTML = `<div class="section-title"><div><div class="smallcaps">progress</div><h2>Прогресс</h2></div></div><div class="stats"><div class="stat"><span class="smallcaps">Выполнено тренировок</span><strong>${Object.keys(s.done).length}</strong></div><div class="stat"><span class="smallcaps">Отмечено подходов</span><strong>${records.length}</strong></div></div><h3 style="font-family:'Cormorant Garamond',serif;font-size:30px;margin:4px 0 8px">Журнал подходов</h3>${records.reverse().map(([k,v])=>{ const [w,n,d,e,i]=k.split('-'); return `<div class="history"><small>Неделя ${w} · план ${n}/нед · занятие ${+d+1}</small><br><b>${E[e]?.[0]||e}</b><br>${v.kg||0} кг × ${v.rep||'—'} ${e==='plank'?'сек':''}</div>`; }).join('') || '<div class="history">Пока нет сохранённых подходов.</div>'}`;
+}
+
+function renderSettings(a){
+  a.innerHTML = `<div class="section-title"><div><div class="smallcaps">settings</div><h2>Настройки</h2></div></div><div class="settings-card"><p style="margin-top:0">Сколько силовых тренировок в неделю?</p><div class="row">${[1,2,3,4].map(n=>`<button class="${s.n===n?'active':''}" onclick="changeN(${n})">${n}</button>`).join('')}</div><p class="muted">План автоматически меняется. Предыдущие записи не удаляются.</p><div class="equipline"><strong>DDX Fitness · предпочтение тренажёрам</strong><label><input type="checkbox" ${s.machine!==false?'checked':''} onchange="s.machine=this.checked;save();render()"> Использовать тренажёры по умолчанию</label><small>Модели Selection 900 приведены для ориентира; комплектация клуба может отличаться. <a href="https://www.ddxfitness.ru/what-we-have/" target="_blank" rel="noopener">Оборудование DDX</a></small></div><div class="font-sample"><div class="display">FORMA Rose</div><div style="font-weight:700;margin-bottom:6px">Обновлённая типографика</div><div class="muted">Заголовки выполнены более выразительным акцентным шрифтом, а основной текст - чистым современным гротеском для удобства чтения на телефоне.</div></div></div><div class="settings-card"><div class="smallcaps">Что уже добавлено</div><div class="chips" style="margin-top:10px"><span class="chip hot">Фото и каталог тренажёров</span><span class="chip">Показ рабочих мышц</span><span class="chip">Замена упражнений</span><span class="chip">История подходов</span><span class="chip">Розовая тема</span></div><p class="muted" style="margin-bottom:0;margin-top:12px">Фото загружаются из интернета; для моделей Technogym доступны ссылки на официальный каталог. Не все упражнения имеют точную фотографию.</p></div>`;
+}
+
+function render(){
+  const a=document.getElementById('app');
+  if(tab==='log') return renderLog(a);
+  if(tab==='settings') return renderSettings(a);
+  return renderPlan(a);
+}
+
+const GUEST='formaRoseV2';
+let roseClient=null, roseUser=null, roseBusy=false;
+function roseKey(){return roseUser?'formaRoseAccount:'+roseUser.id:GUEST}
+function roseNormalize(x){x=x&&typeof x==='object'&&!Array.isArray(x)?x:{};x.n=[1,2,3,4].includes(x.n)?x.n:3;x.week=Math.max(1,Number(x.week)||1);x.day=Math.min(x.n-1,Math.max(0,Number(x.day)||0));for(const f of ['data','done','swaps'])if(!x[f]||typeof x[f]!=='object'||Array.isArray(x[f]))x[f]={};return x}
+function roseLocal(key){try{return roseNormalize(JSON.parse(localStorage.getItem(key))||{});}catch{return roseNormalize({})}}
+function roseMessage(t){document.getElementById('rose-status').textContent=t}
+function rosePanel(){const p=document.getElementById('rose-panel');p.innerHTML=roseUser?'<div class="row"><strong>Личный кабинет</strong><button type="button" onclick="roseLogout()">Выйти</button></div><p class="muted">Облачный дневник отдельный от FORMA и семейного бюджета.</p><div class="row"><button onclick="roseUpload()">Сохранить в облако</button><button onclick="roseDownload()">Загрузить из облака</button><button onclick="roseImport()">Перенести локальные записи</button></div>':'<details><summary>Вход и облачный дневник</summary><form onsubmit="event.preventDefault();roseLogin()"><label>Электронная почта<input id="rose-email" type="email" autocomplete="email" required style="display:block;width:100%;padding:10px;margin:6px 0"></label><label>Пароль<input id="rose-password" type="password" autocomplete="current-password" required style="display:block;width:100%;padding:10px;margin:6px 0"></label><div class="row"><button type="submit">Войти</button><button type="button" onclick="roseRegister()">Создать аккаунт</button></div></form><p class="muted">Без входа дневник хранится на этом устройстве.</p></details>'}
+async function roseSwitch(user){roseUser=user||null;s=roseLocal(roseKey());rosePanel();render()}
+async function roseLogin(){if(!roseClient||roseBusy)return;const email=document.getElementById('rose-email').value.trim(),password=document.getElementById('rose-password').value;roseBusy=true;try{const {data,error}=await roseClient.auth.signInWithPassword({email,password});if(error)throw error;await roseSwitch(data.user);roseMessage('Вход выполнен. Для восстановления записей нажми «Загрузить из облака».')}catch(e){roseMessage('Не удалось войти: '+e.message)}finally{roseBusy=false}}
+async function roseRegister(){if(!roseClient||roseBusy)return;const email=document.getElementById('rose-email').value.trim(),password=document.getElementById('rose-password').value;if(!email||password.length<6){roseMessage('Укажи почту и пароль не менее 6 символов.');return}roseBusy=true;try{const {data,error}=await roseClient.auth.signUp({email,password});if(error)throw error;if(data.session){await roseSwitch(data.user);roseMessage('Аккаунт создан.')}else roseMessage('Проверь почту, подтверди регистрацию и затем войди.')}catch(e){roseMessage('Не удалось создать аккаунт: '+e.message)}finally{roseBusy=false}}
+async function roseLogout(){if(roseBusy)return;roseBusy=true;try{const {error}=await roseClient.auth.signOut();if(error)throw error;await roseSwitch(null);roseMessage('Выход выполнен. Локальный гостевой дневник.')}catch(e){roseMessage(e.message)}finally{roseBusy=false}}
+async function roseUpload(){if(!roseUser||roseBusy)return;if(!confirm('Сохранить текущий дневник в облаке? Это заменит предыдущую облачную копию.'))return;roseBusy=true;try{const {error}=await roseClient.from('forma_rose_diary').upsert({user_id:roseUser.id,state:s,updated_at:new Date().toISOString()},{onConflict:'user_id'});if(error)throw error;roseMessage('Дневник сохранён в облаке.')}catch(e){roseMessage('Ошибка сохранения: '+e.message)}finally{roseBusy=false}}
+async function roseDownload(){if(!roseUser||roseBusy)return;roseBusy=true;try{const {data,error}=await roseClient.from('forma_rose_diary').select('state,updated_at').eq('user_id',roseUser.id).maybeSingle();if(error)throw error;if(!data){roseMessage('Облачных записей пока нет.');return}if(!confirm('Заменить локальный дневник облачной копией от '+new Date(data.updated_at).toLocaleString('ru-RU')+'?'))return;s=roseNormalize(data.state);save();render();roseMessage('Облачный дневник восстановлен.')}catch(e){roseMessage('Ошибка загрузки: '+e.message)}finally{roseBusy=false}}
+function roseImport(){if(!roseUser)return;if(!confirm('Заменить дневник аккаунта гостевыми записями с этого устройства?'))return;s=roseLocal(GUEST);save();render();roseMessage('Локальные записи перенесены. Нажми «Сохранить в облако».')}
+async function roseInit(){rosePanel();if(!window.supabase){roseMessage('Облачное подключение недоступно. Локальный дневник работает.');return}try{roseClient=window.supabase.createClient('https://alxukcjuhbtmcasizfog.supabase.co',"sb_publishable_1XqT7uKRpnSBTlLnwL9z5Q_5eUhn6MW",{auth:{storageKey:'forma-rose-auth-v1',persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}});const {data,error}=await roseClient.auth.getSession();if(error)throw error;if(data.session){await roseSwitch(data.session.user);roseMessage('Вход восстановлен. Облачные копии сохраняются вручную.')}else roseMessage('Можно войти в личный кабинет.')}catch(e){roseMessage('Облачное подключение: '+e.message)}}
+
+render();roseInit();
+</script>
+</body>
+</html>
